@@ -15,13 +15,6 @@ e. Status of the request: Unassigned, Assigned, InProgress, Closed
 f. Submit button. When this button is pressed, the data in the form is saved into a state.
 2. A list of the submitted service requests. The data does not need to be persistent between application
 invocations.
-You will select from one the following list of service request components:
-1. Room scheduling request. Do not worry about time conflicts.
-2. Gift delivery request
-3. Medicine delivery service
-4. Medical device delivery service. For example, hospital beds, IV pumps, recliners, etc.
-5. Sanitation services
-6. Security services
-The Iteration 2 assignment will have teams include 4 additional service request components. As a team, you
-may want to coordinate the service request components that members are doing for this Assignment 3 to
-reduce the amount of additional work for Iteration 2.
+
+TASK: Medical device delivery service. For example, hospital beds, IV pumps, recliners, etc.
+
