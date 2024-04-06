@@ -1,0 +1,49 @@
+.actionButton {
+    background-color: #2b2c52;
+    color: #ffffff;
+    border-radius: 7px;
+    border: 3px solid;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.actionButton:hover {
+    background-color: #a8a9de;
+    color: #2b2c52;
+    border: 3px solid #2b2c52;
+}
+
+/*Formatting Tables*/
+.contentTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 60%;
+    border-radius: 7px 7px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family: Inter, sans-serif;
+}
+/*Content inside table*/
+.contentTable th,
+.contentTable td {
+    padding: 12px 15px;
+}
+
+/*Table Header*/
+.contentTable thead tr {
+    background-color: #2196f3;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+/*Table rows*/
+.contentTable tbody tr {
+    border-bottom: 1px solid #2196f3;
+}
+.contentTable tbody tr:nth-of-type(even) {
+    background-color: #c8dff6;
+}
+.contentTable tbody tr:last-of-type {
+    border-bottom: 2px solid #2196f3;
+}
