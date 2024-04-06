@@ -23,6 +23,7 @@
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     font-family: Inter, sans-serif;
+    background-color: #eef3f8;
 }
 /*Content inside table*/
 .contentTable th,
@@ -42,7 +43,7 @@
     border-bottom: 1px solid #2196f3;
 }
 .contentTable tbody tr:nth-of-type(even) {
-    background-color: #c8dff6;
+    background-color: #d8e7f6;
 }
 .contentTable tbody tr:last-of-type {
     border-bottom: 2px solid #2196f3;

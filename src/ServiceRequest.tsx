@@ -1,46 +1,62 @@
 import React, { useState } from 'react';
 import './App.css';
-import axios from "axios";
+// import axios from "axios";
 import {Table} from "@mui/material";
+import "./ServiceRequest.css";
 
-const ServiceRequest = () => {
-    const [formState, setFormState] = useState({
-        employeeName: "",
-        requestPriority: "",
-        location: "",
-        status: "",
-        medicalDevice: "",
-    });
+interface ServiceRequest {
+    employeeName: string,
+    requestPriority: string,
+    location: string,
+    medicalDevice: string,
+    status: string,
+}
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
+const App: React.FC = () => {
+    const [serviceRequests, setServiceRequests]
+        = useState<ServiceRequest[]>([]);
+    const [formState, setFormState]
+        = useState<ServiceRequest>({
+        employeeName: '',
+        requestPriority: '',
+        location: '',
+        medicalDevice: '',
+        status: 'Unassigned',
+    })
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement| HTMLSelectElement | HTMLTextAreaElement>) => {
+    // Checkboxes run error but rest of site works :)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
+
         setFormState({
             ...formState,
-            [event.target.name]: event.target.value,
+            [name]: newValue,
         });
     };
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        setIsSubmitted(true);
-        //Handle Submission
-        try {
-            const response = await axios.post("/api/form", formState);
-            console.log("Form data sent successfully:", response.data);
-        } catch (error) {
-            console.error("Error submitting form data: ", error);
-        }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setServiceRequests([...serviceRequests, formState]);
+        setFormState({
+            employeeName: '',
+            requestPriority: '',
+            location: '',
+            medicalDevice: '',
+            status: 'Unassigned',
+        });
     };
 
-    return isSubmitted ? (
-        <>
-            <div>
-                Form Submitted!
-                {/*    add submit another request, and return button*/}
-            </div>
-        </>
-    ):(
+    return (
+    // isSubmitted ? (
+    //     <>
+    //         <div>
+    //             Form Submitted!
+    //             {/*    add submit another request, and return button*/}
+    //         </div>
+    //     </>
+    // ):(
         <>
             <div>
                 <h1> Enter Your Service Request </h1>
@@ -86,32 +102,32 @@ const ServiceRequest = () => {
                         <legend>Choose Medical Device:</legend>
 
                         <div>
-                            <input type="checkbox" id="hospitalBeds" name="hospitalBeds"/>
+                            <input type="checkbox" id="hospitalBeds" name="hospitalBeds" checked={formState.medicalDevice === 'hospitalBeds'} onChange={handleChange}/>
                             <label htmlFor="hospitalBeds">Hospital Bed</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="IVpumps" name="IVpumps"/>
+                            <input type="checkbox" id="IVpumps" name="IVpumps" checked={formState.medicalDevice === 'IVpumps'} onChange={handleChange}/>
                             <label htmlFor="IVpumps">IV pumps</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="recliners" name="recliners"/>
+                            <input type="checkbox" id="recliners" name="recliners" checked={formState.medicalDevice === 'recliners'} onChange={handleChange}/>
                             <label htmlFor="recliners">Recliners</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="Ventilators" name="Ventilators"/>
+                            <input type="checkbox" id="Ventilators" name="Ventilators" checked={formState.medicalDevice === 'Ventilators'} onChange={handleChange}/>
                             <label htmlFor="Ventilators">Ventilators</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="Anesthesia" name="Anesthesia"/>
+                            <input type="checkbox" id="Anesthesia" name="Anesthesia" checked={formState.medicalDevice === 'Anesthesia'} onChange={handleChange}/>
                             <label htmlFor="Anesthesia">Anesthesia Machines</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="Pacemakers" name="Pacemakers"/>
+                            <input type="checkbox" id="Pacemakers" name="Pacemakers" checked={formState.medicalDevice === 'Pacemakers'} onChange={handleChange}/>
                             <label htmlFor="Pacemakers">Pacemakers</label>
                         </div>
                     </div>
@@ -150,23 +166,24 @@ const ServiceRequest = () => {
                         <th>Medical Device</th>
                         <th>Status</th>
                     </tr>
-
                     </thead>
 
-                    {/*uses an arry to store the data then displays it*/}
-                    {/*<tbody>*/}
-                    {/*{isSubmitted.map((data, index) => (*/}
-                    {/*    <tr>*/}
-                    {/*        <td></td>*/}
-                    {/*    </tr>*/}
-
-
-                    {/*))}*/}
-
+                    <tbody>
+                    {serviceRequests.map((request, index) => (
+                        <tr key={index}>
+                            <td>{request.employeeName}</td>
+                            <td>{request.requestPriority}</td>
+                            <td>{request.location}</td>
+                            <td>{request.medicalDevice}</td>
+                            <td>{request.status}</td>
+                        </tr>
+                    ))}
+                    </tbody>
                 </Table>
             </div>
         </>
     );
 };
 
-export default ServiceRequest;
+// export default ServiceRequest;
+export default App;
