@@ -26,7 +26,6 @@ const App: React.FC = () => {
         status: 'Unassigned',
     })
 
-    // Checkboxes run error but rest of site works :)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormState({
@@ -35,7 +34,6 @@ const App: React.FC = () => {
         });
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setServiceRequests([...serviceRequests, formState]);
